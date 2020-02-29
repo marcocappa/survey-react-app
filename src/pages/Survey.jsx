@@ -21,7 +21,7 @@ class Survey extends React.Component {
 
         <main className="container">
           <h1>Survey React App</h1>
-          {questions?.map(q => <p key={q.question}>{q.question}</p>)}
+          {questions?.map(question => <p key={question.id}>{question.question}</p>)}
         </main>
       </div>
     )
