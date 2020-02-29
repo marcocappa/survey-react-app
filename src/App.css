@@ -1,11 +1,18 @@
-.html, body {
-  background-color: #f1e2f2;
+* {
   box-sizing: border-box;
+}
+
+html, body {
+  background-color: #f1e2f2;
   font-size: 16px;
 }
 
 a:active{
   color: #7654b2;
+}
+
+.home{
+  text-align: center;
 }
 
 .app {
@@ -15,22 +22,24 @@ a:active{
 .header {
   margin: 0 auto;
   max-width: 75rem;
-  padding: 0.5rem 0;
+  padding: 0.5rem 1rem;
 }
 
 .container {
   color: #63429e;
-  padding: 2rem 0;
+  padding: 2rem 1rem;
   margin: 0 auto;
   max-width: 45rem;
-  text-align: center;
+  width: 100%;
 }
 
 .btn {
   background-color: #63429e;
   border-radius: 3px;
   color: #f1e2f2;
+  cursor: pointer;
   display: inline-block;
+  font-size: 1rem;
   padding: 0.75rem 1.25rem;
   text-decoration: none;
 }
@@ -38,4 +47,26 @@ a:active{
 .btn:hover{
   background-color: #7654b2;
   color: #ffffff;
+}
+
+.btn--disabled{
+  opacity: 0.8;
+  cursor: not-allowed;
+}
+
+.btn--disabled:hover{
+  background-color: #63429e;
+  color: #f1e2f2;
+}
+
+.survey-title{
+  margin-bottom: 3rem;
+}
+
+.survey-container{
+  padding: 0 0.5rem;
+}
+
+.action{
+  margin: 3rem 0;
 }

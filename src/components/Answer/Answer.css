@@ -1,0 +1,21 @@
+.answer {
+  background: transparent;
+  border: none;
+  color: #666;
+  cursor: pointer;
+  display: block;
+  font-size: 1rem;
+  margin: 0.6rem 0rem;
+  padding: 0.4rem 2rem;
+  position: relative;
+}
+
+.answer-selected{
+  color: black
+}
+
+.circle{
+  left: 4px;
+  position: absolute;
+  top: 2px;
+}

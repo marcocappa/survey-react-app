@@ -3,7 +3,7 @@ import { Link } from "react-router-dom"
 import QAIcon from "../components/Icons/QAIcon.jsx"
 
 const Home = () => (
-    <div className="app">
+    <div className="app home">
         <main className="container">
             <QAIcon />
             <h1>Welcome to the Survey React App</h1>
