@@ -1,6 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
+import Question from "../components/Question"
 
 import { fetchQuestions as fetchQuestionsAction } from "../actions/index.js"
 
@@ -21,7 +22,7 @@ class Survey extends React.Component {
 
         <main className="container">
           <h1>Survey React App</h1>
-          {questions?.map(question => <p key={question.id}>{question.question}</p>)}
+          {questions?.map(question => <Question key={question.id} question={question.question} />)}
         </main>
       </div>
     )
