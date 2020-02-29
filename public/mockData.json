@@ -1,0 +1,34 @@
+{
+    "data": [
+        {
+            "question": "What is 8 x 1?",
+            "answers": [
+                "1",
+                "8",
+                "16",
+                "9"
+            ],
+            "correct": 1
+        },
+        {
+            "question": "Who is Steve Jobs?",
+            "answers": [
+                "CEO of Microsoft",
+                "Barber in NY",
+                "Movie Star",
+                "CEO of Apple"
+            ],
+            "correct": 3
+        },
+        {
+            "question": "Metallica is a ____ band",
+            "answers": [
+                "Blues",
+                "Hard-Rock",
+                "Jazz",
+                "Metal"
+            ],
+            "correct": 3
+        }
+    ]
+}

@@ -1,0 +1,41 @@
+.html, body {
+  background-color: #f1e2f2;
+  box-sizing: border-box;
+  font-size: 16px;
+}
+
+a:active{
+  color: #7654b2;
+}
+
+.app {
+  min-height: 100vh;
+}
+
+.header {
+  margin: 0 auto;
+  max-width: 75rem;
+  padding: 0.5rem 0;
+}
+
+.container {
+  color: #63429e;
+  padding: 2rem 0;
+  margin: 0 auto;
+  max-width: 45rem;
+  text-align: center;
+}
+
+.btn {
+  background-color: #63429e;
+  border-radius: 3px;
+  color: #f1e2f2;
+  display: inline-block;
+  padding: 0.75rem 1.25rem;
+  text-decoration: none;
+}
+
+.btn:hover{
+  background-color: #7654b2;
+  color: #ffffff;
+}
