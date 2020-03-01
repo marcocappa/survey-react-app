@@ -14,6 +14,14 @@
   color: black
 }
 
+.answer-correct{
+  color: #090;
+}
+
+.answer-wrong{
+  color: #900;
+}
+
 .circle{
   left: 4px;
   position: absolute;

@@ -4,8 +4,8 @@ import {
   Switch,
   Route
 } from "react-router-dom";
-import Home from "./pages/Home.jsx";
-import Survey from "./pages/Survey.jsx";
+import Home from "./pages/Home";
+import Survey from "./pages/Survey";
 
 import './App.css';
 

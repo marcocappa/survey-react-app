@@ -1,0 +1,122 @@
+import React from "react";
+import { connect } from "react-redux";
+import classnames from "classnames";
+import { Link } from "react-router-dom";
+
+import Question from "../../components/Question";
+import Answer from "../../components/Answer";
+
+import { fetchQuestions as fetchQuestionsAction } from "../../actions/questionActions"
+import { selectAnswer as selectAnswerAction } from "../../actions/answerActions"
+import { submitAnswer as submitAnswerAction } from "../../actions/answerActions"
+
+import { RESOURCE_NOT_FOUND } from "../../constants"
+
+class Survey extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      disabled: true
+    }
+  }
+  componentDidMount() {
+    const { fetchQuestions } = this.props;
+    fetchQuestions();
+  }
+
+  checkAllQuestionsAnswered = () => {
+    const { answered, totalQuestions } = this.props;
+    return !(Object.keys(answered).length === totalQuestions);
+  }
+
+  handleSelectAnwser = async (answerId, questionId) => {
+    const { selectAnswer } = this.props;
+    await selectAnswer({ questionId, answerId })
+
+    this.setState({
+      disabled: this.checkAllQuestionsAnswered()
+    })
+  }
+
+  handleSubmit = () => {
+    const { answered, submitAnswer } = this.props;
+    submitAnswer(answered)
+  }
+
+  render() {
+    const { questions, totalQuestions, answered, error, totalCorrect, results } = this.props;
+    const { disabled } = this.state;
+    return (
+      <div className="app">
+        <header className="header">
+          <Link to="/" title="Go back and exit survey">Go back</Link>
+        </header>
+
+        <main className="container">
+          {error ?
+            error === RESOURCE_NOT_FOUND ?
+              <h2 className="survey-title">Error 404! </h2> :
+              <h2 className="survey-title">Server Error! </h2>
+            :
+            <>
+              <h2 className="survey-title">This Survey consists in {totalQuestions} questions. Please try your best!</h2>
+              <div className="survey-container">
+                {Object.keys(questions).map((key) => {
+                  return (<React.Fragment key={key}>
+                    <Question question={questions[key].question} index={key} />
+                    {questions[key].answers?.map((answer, index) => <Answer
+                      key={answer}
+                      answerId={index}
+                      questionId={key}
+                      onClick={this.handleSelectAnwser}
+                      answer={answer}
+                      selected={answered[key]?.answer === index}
+                      correct={results[key]}
+                    />)}
+                  </React.Fragment>)
+                })}
+
+                <div className="action">
+                  {totalCorrect >= 0 && <h2>Your result is {totalCorrect} correct {totalCorrect === 1 ? "answer" : "answers"}!</h2>}
+                  <button
+                    className={classnames("btn", disabled && !Object.values(results) && "btn--disabled")}
+                    onClick={this.handleSubmit}
+                    disabled={disabled}
+                    title="Submit"
+                  >Submit</button>
+                </div>
+              </div>
+            </>
+          }
+        </main>
+      </div>
+    )
+  }
+};
+
+const mapDispatchToProps = {
+  fetchQuestions: fetchQuestionsAction,
+  selectAnswer: selectAnswerAction,
+  submitAnswer: submitAnswerAction
+}
+
+const mapStateToProps = (state) => {
+  return {
+    questions: state.survey.questions,
+    totalQuestions: state.survey.totalQuestions,
+    answered: state.survey.answered,
+    error: state.survey.error,
+    results: state.survey.results,
+    totalCorrect: state.survey.totalCorrect,
+  }
+}
+
+Survey.defaultProps = {
+  questions: {},
+  answered: {},
+  totalQuestions: undefined,
+  results: {},
+  totalCorrect: undefined
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Survey);

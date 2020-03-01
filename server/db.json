@@ -1,0 +1,76 @@
+{
+  "questions": [
+    {
+      "id": 1,
+      "question": "What is the national sport in Japan?",
+      "answers": [
+        "Tennis Table",
+        "Football",
+        "Sumo Wrestling",
+        "Basket"
+      ]
+    },
+    {
+      "id": 2,
+      "question": "In which country were the first Olympic Games held?",
+      "answers": [
+        "Greece",
+        "Germany",
+        "Italy",
+        "United Kingdom"
+      ]
+    },
+    {
+      "id": 3,
+      "question": "How long is an Olympic swimming pool?",
+      "answers": [
+        "Twenty meters",
+        "Thirty meters",
+        "Fourty meters",
+        "Fifty meters"
+      ]
+    },
+    {
+      "id": 4,
+      "question": "How matches did Mohammed Ali lose in his career?",
+      "answers": [
+        "None",
+        "1",
+        "2",
+        "More than 2"
+      ]
+    },
+    {
+      "id": 5,
+      "question": "How many minutes is a rugby match?",
+      "answers": [
+        "40 Minutes",
+        "60 Minutes",
+        "80 Minutes",
+        "100 Minutes"
+      ]
+    }
+  ],
+  "answers": [
+    {
+      "id": 1,
+      "correct": 2
+    },
+    {
+      "id": 2,
+      "correct": 0
+    },
+    {
+      "id": 3,
+      "correct": 3
+    },
+    {
+      "id": 4,
+      "correct": 1
+    },
+    {
+      "id": 5,
+      "correct": 2
+    }
+  ]
+}

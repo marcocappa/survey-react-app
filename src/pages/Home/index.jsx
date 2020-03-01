@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom"
-import QAIcon from "../components/Icons/QAIcon.jsx"
+
+import QAIcon from "../../components/Icons/QAIcon.jsx"
 
 const Home = () => (
     <div className="app home">

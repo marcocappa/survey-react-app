@@ -1,51 +1,28 @@
+import { normalize } from 'normalizr';
+import { surveyDataSchema } from "./schema";
 import {
   LOAD_QUESTIONS_SUCCESS,
   LOAD_QUESTIONS_FAILURE,
-  SELECT_ANSWER
+  ADD_ANSWER,
+  CHECK_ANSWER_FAILURE,
+  CHECK_ANSWER_SUCCESS
 } from "../constants";
 
-import { normalize, schema } from 'normalizr';
-
-const questionSchema = new schema.Entity('questions');
-const surveyDataSchema = new schema.Array(questionSchema);
-
 const initialState = {
-  err: "",
+  error: "",
   questions: {},
   answered: {},
   totalQuestions: 0,
-  totalCorrect: 0
+  results: {},
+  totalCorrect: undefined
 }
 
 const questions = (state = initialState, action) => {
   switch (action.type) {
-    case SELECT_ANSWER: {
-      const { answerId, questionId } = action.payload;
-      let isCorrect = false;
-      let totalCorrect = state.totalCorrect;
-
-      if (answerId === state.questions[questionId].correct) {
-        isCorrect = true;
-        totalCorrect = totalCorrect + 1;
-      } else if (state.answered[questionId]) {
-        totalCorrect = totalCorrect - 1;
-
-      }
-
-      return {
-        ...state,
-        answered: {
-          ...state.answered,
-          [action.payload.questionId]: { answer: action.payload.answerId, isCorrect },
-        },
-        totalCorrect
-      }
-    }
-
     case LOAD_QUESTIONS_FAILURE:
       return {
         ...state,
-        questions: action.err
+        error: action.error
       }
 
     case LOAD_QUESTIONS_SUCCESS: {
@@ -54,6 +31,40 @@ const questions = (state = initialState, action) => {
         ...state,
         questions: entities.questions,
         totalQuestions: action.data.length
+      }
+    }
+
+    case ADD_ANSWER: {
+      const { answerId, questionId } = action.payload;
+
+      return {
+        ...state,
+        answered: {
+          ...state.answered,
+          [questionId]: { question: questionId, answer: answerId }
+        },
+        results: {
+          ...state.results,
+          [questionId]: ""
+        },
+        totalCorrect: undefined
+      }
+    }
+
+    case CHECK_ANSWER_FAILURE:
+      return {
+        ...state,
+        error: action.error
+      }
+
+    case CHECK_ANSWER_SUCCESS: {
+      return {
+        ...state,
+        results: action.data,
+        totalCorrect: Object.keys(action.data).reduce(
+          (acc, key) => action.data[key] === "CORRECT" ? acc + 1 : acc,
+          0
+        )
       }
     }
 

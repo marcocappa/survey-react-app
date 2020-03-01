@@ -20,24 +20,17 @@ export function loadQuestionsSuccess(data) {
 export function fetchQuestions() {
   return async (dispatch) => {
 
-    let response = {
-      err: undefined,
-    };
+    const response = await fetch('http://localhost:5000/questions')
+      .then(questions => questions.json())
 
-    try {
-      response.body = await fetch(`${process.env.PUBLIC_URL}/mockData.json`).then(questions => questions.json())
-    }
-    catch (err) {
-      response.err = err
-    }
+    const { body, error } = response;
 
-    const { body, err } = response;
-
-    if (err) {
-      dispatch(loadQuestionsFailure(response.err))
+    if (error) {
+      dispatch(loadQuestionsFailure(response.error))
+      return;
     }
 
-    dispatch(loadQuestionsSuccess(body.data))
+    dispatch(loadQuestionsSuccess(body))
   }
 }
 
