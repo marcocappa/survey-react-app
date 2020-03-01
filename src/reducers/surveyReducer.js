@@ -22,15 +22,15 @@ const questions = (state = initialState, action) => {
     case LOAD_QUESTIONS_FAILURE:
       return {
         ...state,
-        error: action.error
+        error: action.payload
       }
 
     case LOAD_QUESTIONS_SUCCESS: {
-      const { entities } = normalize(action.data, surveyDataSchema);
+      const { entities } = normalize(action.payload, surveyDataSchema);
       return {
         ...state,
         questions: entities.questions,
-        totalQuestions: action.data.length
+        totalQuestions: action.payload.length
       }
     }
 
@@ -54,15 +54,15 @@ const questions = (state = initialState, action) => {
     case CHECK_ANSWER_FAILURE:
       return {
         ...state,
-        error: action.error
+        error: action.payload
       }
 
     case CHECK_ANSWER_SUCCESS: {
       return {
         ...state,
-        results: action.data,
-        totalCorrect: Object.keys(action.data).reduce(
-          (acc, key) => action.data[key] === "CORRECT" ? acc + 1 : acc,
+        results: action.payload,
+        totalCorrect: Object.keys(action.payload).reduce(
+          (acc, key) => action.payload[key] === "CORRECT" ? acc + 1 : acc,
           0
         )
       }

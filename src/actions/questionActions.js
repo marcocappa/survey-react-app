@@ -3,17 +3,17 @@ import {
   LOAD_QUESTIONS_FAILURE
 } from "../constants.js";
 
-export function loadQuestionsFailure(error) {
+export function loadQuestionsFailure(payload) {
   return {
     type: LOAD_QUESTIONS_FAILURE,
-    error
+    payload
   }
 }
 
-export function loadQuestionsSuccess(data) {
+export function loadQuestionsSuccess(payload) {
   return {
     type: LOAD_QUESTIONS_SUCCESS,
-    data
+    payload
   }
 }
 

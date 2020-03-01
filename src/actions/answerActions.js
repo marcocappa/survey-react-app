@@ -14,17 +14,17 @@ export function selectAnswer(payload) {
 }
 
 
-export function checkAnswerFailure(error) {
+export function checkAnswerFailure(payload) {
   return {
     type: CHECK_ANSWER_FAILURE,
-    error
+    payload
   }
 }
 
-export function checkAnswerSuccess(data) {
+export function checkAnswerSuccess(payload) {
   return {
     type: CHECK_ANSWER_SUCCESS,
-    data
+    payload
   }
 }
 
