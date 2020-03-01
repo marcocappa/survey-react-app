@@ -10,19 +10,19 @@
   position: relative;
 }
 
-.answer-selected{
-  color: black
+.answer-selected {
+  color: black;
 }
 
-.answer-correct{
+.answer-correct {
   color: #090;
 }
 
-.answer-wrong{
+.answer-wrong {
   color: #900;
 }
 
-.circle{
+.circle {
   left: 4px;
   position: absolute;
   top: 4px;

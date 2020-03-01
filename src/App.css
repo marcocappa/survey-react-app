@@ -3,17 +3,18 @@
   font-family: 'Noto Sans', Helvetica, Arial, sans-serif;
 }
 
-html, body {
+html,
+body {
   background-color: #f1e2f2;
   font-size: 16px;
   font-family: 'Noto Sans', Helvetica, Arial, sans-serif;
 }
 
-a:active{
+a:active {
   color: #7654b2;
 }
 
-.home{
+.home {
   text-align: center;
 }
 
@@ -46,29 +47,29 @@ a:active{
   text-decoration: none;
 }
 
-.btn:hover{
+.btn:hover {
   background-color: #7654b2;
   color: #ffffff;
 }
 
-.btn--disabled{
+.btn--disabled {
   opacity: 0.8;
   cursor: not-allowed;
 }
 
-.btn--disabled:hover{
+.btn--disabled:hover {
   background-color: #63429e;
   color: #f1e2f2;
 }
 
-.survey-title{
+.survey-title {
   margin-bottom: 3rem;
 }
 
-.survey-container{
+.survey-container {
   padding: 0 0.5rem;
 }
 
-.action{
+.action {
   margin: 3rem 0;
 }

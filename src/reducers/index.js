@@ -3,4 +3,4 @@ import survey from './surveyReducer';
 
 export default combineReducers({
   survey
-})
+});

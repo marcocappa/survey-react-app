@@ -1,58 +1,60 @@
 import { normalize } from 'normalizr';
-import { answerDataSchema } from "./schema";
+import { answerDataSchema } from './schema';
 import {
   ADD_ANSWER,
   CHECK_ANSWER_FAILURE,
   CHECK_ANSWER_SUCCESS
-} from "../constants.js";
+} from '../constants.js';
 
 export function selectAnswer(payload) {
   return {
     type: ADD_ANSWER,
     payload
-  }
+  };
 }
-
 
 export function checkAnswerFailure(payload) {
   return {
     type: CHECK_ANSWER_FAILURE,
     payload
-  }
+  };
 }
 
 export function checkAnswerSuccess(payload) {
   return {
     type: CHECK_ANSWER_SUCCESS,
     payload
-  }
+  };
 }
-
 
 function serverCheckAnswers(userAnswers, correctAnswers) {
-  const { entities: normalizeCorrectAnswers } = normalize(correctAnswers, answerDataSchema);
+  const { entities: normalizeCorrectAnswers } = normalize(
+    correctAnswers,
+    answerDataSchema
+  );
   const { answer } = normalizeCorrectAnswers;
 
-  return Object.keys(answer).reduce((acc, key) => (
-    {
+  return Object.keys(answer).reduce(
+    (acc, key) => ({
       ...acc,
-      [answer[key].id]: answer[key].correct === userAnswers[key].answer ? "CORRECT" : "WRONG"
-    }
-  ), {})
+      [answer[key].id]:
+        answer[key].correct === userAnswers[key].answer ? 'CORRECT' : 'WRONG'
+    }),
+    {}
+  );
 }
 
-
 export function submitAnswer(userAnswers) {
-  return async (dispatch) => {
-
+  return async dispatch => {
     let response = {
       body: undefined,
       error: undefined
     };
 
     try {
-      response = await fetch('http://localhost:5000/answers')
-        .then(answers => answers.json())
+      response = await fetch('http://localhost:5000/answers').then(answers =>
+        answers.json()
+      );
     } catch (err) {
       response.error = err;
     }
@@ -64,9 +66,8 @@ export function submitAnswer(userAnswers) {
       return;
     }
 
-    const results = serverCheckAnswers(userAnswers, body)
+    const results = serverCheckAnswers(userAnswers, body);
 
     dispatch(checkAnswerSuccess(results));
-
-  }
+  };
 }
