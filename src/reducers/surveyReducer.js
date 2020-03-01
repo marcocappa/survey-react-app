@@ -5,7 +5,8 @@ import {
   LOAD_QUESTIONS_FAILURE,
   ADD_ANSWER,
   CHECK_ANSWER_FAILURE,
-  CHECK_ANSWER_SUCCESS
+  CHECK_ANSWER_SUCCESS,
+  RESET_SURVEY
 } from "../constants";
 
 const initialState = {
@@ -19,6 +20,9 @@ const initialState = {
 
 const questions = (state = initialState, action) => {
   switch (action.type) {
+    case RESET_SURVEY:
+      return initialState
+
     case LOAD_QUESTIONS_FAILURE:
       return {
         ...state,

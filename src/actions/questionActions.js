@@ -1,6 +1,7 @@
 import {
   LOAD_QUESTIONS_SUCCESS,
-  LOAD_QUESTIONS_FAILURE
+  LOAD_QUESTIONS_FAILURE,
+  RESET_SURVEY
 } from "../constants.js";
 
 export function loadQuestionsFailure(payload) {
@@ -14,6 +15,12 @@ export function loadQuestionsSuccess(payload) {
   return {
     type: LOAD_QUESTIONS_SUCCESS,
     payload
+  }
+}
+
+export function resetSurvey() {
+  return {
+    type: RESET_SURVEY
   }
 }
 
@@ -43,4 +50,5 @@ export function fetchQuestions() {
     dispatch(loadQuestionsSuccess(body))
   }
 }
+
 

@@ -6,9 +6,14 @@ import { Link } from "react-router-dom";
 import Question from "../../components/Question";
 import Answer from "../../components/Answer";
 
-import { fetchQuestions as fetchQuestionsAction } from "../../actions/questionActions"
-import { selectAnswer as selectAnswerAction } from "../../actions/answerActions"
-import { submitAnswer as submitAnswerAction } from "../../actions/answerActions"
+import {
+  fetchQuestions as fetchQuestionsAction,
+  resetSurvey as resetSurveyAction
+} from "../../actions/questionActions"
+import {
+  selectAnswer as selectAnswerAction,
+  submitAnswer as submitAnswerAction
+} from "../../actions/answerActions"
 
 import { RESOURCE_NOT_FOUND } from "../../constants"
 
@@ -22,6 +27,11 @@ class Survey extends React.Component {
   componentDidMount() {
     const { fetchQuestions } = this.props;
     fetchQuestions();
+  }
+
+  componentWillUnmount() {
+    const { resetSurvey } = this.props;
+    resetSurvey();
   }
 
   checkAllQuestionsAnswered = () => {
@@ -97,7 +107,8 @@ class Survey extends React.Component {
 const mapDispatchToProps = {
   fetchQuestions: fetchQuestionsAction,
   selectAnswer: selectAnswerAction,
-  submitAnswer: submitAnswerAction
+  submitAnswer: submitAnswerAction,
+  resetSurvey: resetSurveyAction
 }
 
 const mapStateToProps = (state) => {
