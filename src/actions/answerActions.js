@@ -45,8 +45,17 @@ function serverCheckAnswers(userAnswers, correctAnswers) {
 export function submitAnswer(userAnswers) {
   return async (dispatch) => {
 
-    const response = await fetch('http://localhost:5000/answers')
-      .then(answers => answers.json())
+    let response = {
+      body: undefined,
+      error: undefined
+    };
+
+    try {
+      response = await fetch('http://localhost:5000/answers')
+        .then(answers => answers.json())
+    } catch (err) {
+      response.error = err;
+    }
 
     const { body, error } = response;
 

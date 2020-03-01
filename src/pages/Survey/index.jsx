@@ -56,7 +56,7 @@ class Survey extends React.Component {
           {error ?
             error === RESOURCE_NOT_FOUND ?
               <h2 className="survey-title">Error 404! </h2> :
-              <h2 className="survey-title">Server Error! </h2>
+              <h2 className="survey-title">Server Error! Please be sure to have the server up and running! </h2>
             :
             <>
               <h2 className="survey-title">This Survey consists in {totalQuestions} questions. Please try your best!</h2>
@@ -77,9 +77,9 @@ class Survey extends React.Component {
                 })}
 
                 <div className="action">
-                  {totalCorrect >= 0 && <h2>Your result is {totalCorrect} correct {totalCorrect === 1 ? "answer" : "answers"}!</h2>}
+                  {totalCorrect >= 0 && <h2>{totalCorrect === totalQuestions && "Awesome!"} Your result is {totalCorrect} correct {totalCorrect === 1 ? "answer" : "answers"}!</h2>}
                   <button
-                    className={classnames("btn", disabled && !Object.values(results) && "btn--disabled")}
+                    className={classnames("btn", (disabled || totalCorrect >= 0) && "btn--disabled")}
                     onClick={this.handleSubmit}
                     disabled={disabled}
                     title="Submit"

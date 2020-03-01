@@ -7,7 +7,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "json:server": "json-server --watch ./server/db.json --port 5000"
+    "server": "node ./server/index.js"
   },
   "dependencies": {
     "@testing-library/jest-dom": "^4.2.4",

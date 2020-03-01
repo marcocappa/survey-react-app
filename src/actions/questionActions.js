@@ -20,10 +20,20 @@ export function loadQuestionsSuccess(data) {
 export function fetchQuestions() {
   return async (dispatch) => {
 
-    const response = await fetch('http://localhost:5000/questions')
-      .then(questions => questions.json())
+    let response = {
+      body: undefined,
+      error: undefined
+    };
+
+    try {
+      response = await fetch('http://localhost:5000/questions')
+        .then(questions => questions.json())
+    } catch (err) {
+      response.error = err;
+    }
 
     const { body, error } = response;
+
 
     if (error) {
       dispatch(loadQuestionsFailure(response.error))
